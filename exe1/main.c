@@ -27,7 +27,7 @@ int main() {
       printf("fall \n");
     }
   
-    if(rise_flag==3){
+    if(flag==3){
       printf("rise \n");
     }
   }
