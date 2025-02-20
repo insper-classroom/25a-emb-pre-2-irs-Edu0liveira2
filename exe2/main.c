@@ -31,7 +31,7 @@ int main() {
       gpio_put(LED_PIN, 0);
     }
   
-    if(rise_flag==3){
+    if(flag==3){
       printf("rise \n");
       gpio_put(LED_PIN, 1);
     }
