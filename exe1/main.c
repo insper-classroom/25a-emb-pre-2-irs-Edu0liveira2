@@ -22,17 +22,16 @@ int main() {
   gpio_set_dir(BTN_PIN_R, GPIO_IN);
   gpio_pull_up(BTN_PIN_R);
 
-  if(fall_flag == 1){
-    printf("fall \n");
-  }
-
-  if(rise_flag==1){
-    printf("rise \n");
-  }
-
   gpio_set_irq_enabled_with_callback(
       BTN_PIN_R, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &btn_callback);
 
   while (true) {
+    if(fall_flag == 1){
+      printf("fall \n");
+    }
+  
+    if(rise_flag==1){
+      printf("rise \n");
+    }
   }
 }
