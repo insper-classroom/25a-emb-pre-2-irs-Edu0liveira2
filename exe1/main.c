@@ -25,10 +25,12 @@ int main() {
   while (true) {
     if(flag == 1){
       printf("fall \n");
+      flag = 0;
     }
   
-    if(flag==3){
+    else if(flag==3){
       printf("rise \n");
+      flag = 0;
     }
   }
 }

@@ -15,6 +15,7 @@ void btn_callback(uint gpio, uint32_t events) {
 }
 
 int main() {
+  int state = 0
   stdio_init_all();
   gpio_init(LED_PIN);
   gpio_init(BTN_PIN_R);
@@ -27,12 +28,10 @@ int main() {
 
   while (true) {
     if(flag == 1){
-      printf("fall \n");
       gpio_put(LED_PIN, 0);
     }
   
-    if(flag==3){
-      printf("rise \n");
+    else if(flag==3){
       gpio_put(LED_PIN, 1);
     }
   }
