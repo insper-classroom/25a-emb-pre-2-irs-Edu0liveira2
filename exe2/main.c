@@ -3,36 +3,37 @@
 #include <stdio.h>
 
 const int BTN_PIN_R = 28;
-volatile int fall_flag = 0;
-volatile int rise_flag = 0;
+const int LED_PIN = 4;
+volatile int flag = 0;
 
 void btn_callback(uint gpio, uint32_t events) {
   if (events == 0x4) { // fall edge
-    rise_flag = 0;
-    fall_flag = 1;
+    flag = 1;
   } else if (events == 0x8) { // rise edge
-    fall_flag = 0;
-    rise_flag = 1;
+    flag = 3;
   }
 }
 
 int main() {
   stdio_init_all();
+  gpio_init(LED_PIN);
   gpio_init(BTN_PIN_R);
   gpio_set_dir(BTN_PIN_R, GPIO_IN);
+  gpio_set_dir(LED_PIN,GPIO_OUT);
   gpio_pull_up(BTN_PIN_R);
-
-  if(fall_flag == 1){
-    printf("fall \n");
-  }
-
-  if(rise_flag==1){
-    printf("rise \n");
-  }
 
   gpio_set_irq_enabled_with_callback(
       BTN_PIN_R, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &btn_callback);
 
   while (true) {
+    if(flag == 1){
+      printf("fall \n");
+      gpio_put(LED_PIN, 0);
+    }
+  
+    if(rise_flag==3){
+      printf("rise \n");
+      gpio_put(LED_PIN, 1);
+    }
   }
 }
