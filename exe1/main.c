@@ -15,10 +15,8 @@ void btn_callback(uint gpio, uint32_t events) {
 
 int main() {
   stdio_init_all();
-  gpio_init(LED_PIN);
   gpio_init(BTN_PIN_R);
   gpio_set_dir(BTN_PIN_R, GPIO_IN);
-  gpio_set_dir(LED_PIN,GPIO_OUT);
   gpio_pull_up(BTN_PIN_R);
 
   gpio_set_irq_enabled_with_callback(
@@ -29,7 +27,7 @@ int main() {
       printf("fall \n");
     }
   
-    if(flag==3){
+    if(rise_flag==3){
       printf("rise \n");
     }
   }
