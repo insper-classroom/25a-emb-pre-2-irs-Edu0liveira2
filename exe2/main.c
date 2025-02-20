@@ -15,7 +15,6 @@ void btn_callback(uint gpio, uint32_t events) {
 }
 
 int main() {
-  int state = 0
   stdio_init_all();
   gpio_init(LED_PIN);
   gpio_init(BTN_PIN_R);
